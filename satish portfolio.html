@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Your Portfolio</title>
+		<style>
+			/* Reset default styles */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			/* Global styles */
+			body {
+				font-family: Arial, sans-serif;
+				background-color: black;
+				color: white;
+			}
+
+			/* Header styles */
+			header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px;
+			}
+
+			.name {
+				font-size: 24px;
+			}
+
+			.red-letter {
+				color: red;
+			}
+
+			nav ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			nav ul li {
+				display: inline;
+				margin-left: 30px;
+			}
+
+			nav ul li a {
+				text-decoration: none;
+				color: white;
+				transition: color 0.3s;
+			}
+
+			nav ul li a:hover {
+				color: red;
+			}
+
+			/* Message styles */
+			#home-section {
+				background-image: url('https://i.postimg.cc/zGt2sYb9/Picsart-24-02-22-23-15-42-758.jpg');
+				margin-top: 50px;
+				background-size: 1310px;
+				background-position: center;
+				padding: 200px;
+				text-align: left;
+				/* Align text to the left */
+			}
+
+			.message {
+				position: relative;
+				text-align: center;
+				margin-left: -10%;
+				/* Adjusted margin */
+				margin-right: 50%;
+				/* Adjusted margin */
+			}
+
+			.first-message {
+				font-size: 34px;
+			}
+
+			.second-message {
+				font-size: 24px;
+			}
+
+			/* Button styles */
+			button {
+				background-color: red;
+				/* Red background */
+				color: white;
+				/* White text */
+				padding: 05px 20px;
+				/* Add padding for better appearance */
+				border: none;
+				/* Remove border */
+				border-radius: 5px;
+				/* Add border radius for rounded corners */
+				cursor: pointer;
+				/* Change cursor to pointer on hover */
+				transition: background-color 0.3s;
+				/* Add transition effect for smooth color change */
+				margin-top: 30px;
+			}
+
+			button:hover {
+				background-color: darkred;
+				/* Darker red color on hover */
+			}
+
+			/* About section styles */
+			.container {
+				display: flex;
+				justify-content: space-between;
+				background-color: black;
+				/* Black background */
+				padding: 20px;
+				margin-top: 200px;
+				/* Adjusted margin to separate from Home section */
+			}
+
+			.about-col-1 {
+				width: 35%;
+				margin-left: 158px;
+			}
+
+			.profile-image {
+				width: 78%;
+				border-radius: 25px;
+			}
+
+			.about-col-2 {
+				width: 50%;
+				/* Adjusted width */
+				margin-right: 88px;
+				/* Adjusted margin */
+				text-align: justify;
+				/* Align text justified */
+				margin-left: 0px;
+				font-size: 15px;
+				margin-bottom: 15px;
+				margin-top: 55px;
+			}
+
+			.sub-title {
+				font-size: 35px;
+				/* Decreased font size */
+				font-weight: 600;
+				color: #fff;
+				margin-bottom: 25px;
+				/* Adjusted margin */
+			}
+
+			.tab-titles {
+				display: flex;
+				margin: 40px 0 30px;
+				/* Adjusted margin values */
+			}
+
+			.tab-links {
+				margin-right: 50px;
+				font-size: 18px;
+				font-weight: 500;
+				cursor: pointer;
+				position: relative;
+			}
+
+			.tab-links::after {
+				content: '';
+				width: 0;
+				height: 3px;
+				background: #ff004f;
+				position: absolute;
+				left: 0;
+				bottom: -8px;
+				transition: 0.5s;
+			}
+
+			.tab-links.active-link::after {
+				width: 60%;
+			}
+
+			.tab-contents ul li {
+				list-style: none;
+				margin: 15px 0px;
+			}
+
+			.tab-contents ul li span {
+				color: #b54769;
+				font-size: 17px;
+			}
+
+			.tab-contents {
+				display: none;
+			}
+
+			.tab-contents.active-tab {
+				display: block;
+			}
+
+			/* Services Section CSS */
+			.wrapper_main {
+				display: flex;
+				justify-content: center;
+				/* Center the items horizontally */
+				width: 100%;
+				/* Adjust width as needed */
+				margin-top: 80px;
+			}
+
+			.card_main {
+				width: 280px;
+				height: 360px;
+				background: #fff;
+				display: flex;
+				align-items: flex-end;
+				padding: 2rem 1rem;
+				position: relative;
+				transition: 0.5s all ease-in-out;
+				margin: 0 120px;
+				/* Add margin for spacing */
+			}
+
+			.card_main:hover {
+				transform: translateY(-10px);
+			}
+
+			.card_main::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(to bottom, rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 1));
+				z-index: 2;
+				opacity: 0;
+				transition: 0.5s all;
+			}
+
+			.card_main:hover::before {
+				opacity: 1;
+			}
+
+			.card_main img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+
+			.card_main .info {
+				position: relative;
+				color: #fff;
+				z-index: 3;
+				opacity: 0;
+				transform: translateY(30px);
+				transition: 0.5s all;
+			}
+
+			.card_main:hover .info {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			.card_main .info h1 {
+				line-height: 40px;
+				margin-bottom: 10px;
+			}
+
+			.card_main .info p {
+				font-size: 15px;
+				letter-spacing: 1px;
+				margin-bottom: 20px;
+			}
+
+			.card_main .info .btn {
+				background: #fff;
+				padding: 0.5rem 1rem;
+				color: #000;
+				font-size: 12px;
+				cursor: pointer;
+				border-radius: 20px;
+				text-decoration: none;
+				font-weight: bold;
+				transition: .4s ease-in-out;
+			}
+
+			.card_main .info .btn:hover {
+				background: blue;
+				color: #fff;
+				box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5);
+			}
+
+			/* Styling for the heading */
+			.heading {
+				text-align: center;
+				font-size: 36px;
+				margin-bottom: 45px;
+				margin-top: 290px;
+			}
+
+			.heading span {
+				color: red;
+			}
+
+			/* Paragraph styles in about section */
+			.about-paragraph {
+				font-size: 17px;
+				/* Define the font size for paragraphs */
+				font-family: Arial, sans-serif;
+				/* Define the font family for paragraphs */
+				margin-bottom: 45px;
+				/* Adjust spacing between paragraphs */
+			}
+
+			.wrapper {
+				width: 100%;
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				/* Added for positioning hobbies text */
+			}
+
+			.container {
+				height: 400px;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: start;
+			}
+
+			.card {
+				width: 80px;
+				border-radius: .75rem;
+				background-size: cover;
+				cursor: pointer;
+				overflow: hidden;
+				border-radius: 2rem;
+				margin: 0 10px;
+				display: flex;
+				align-items: flex-end;
+				transition: .6s cubic-bezier(.28, -0.03, 0, .99);
+				box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
+				transform: scaleY(0);
+				/* Initially closed */
+				transform-origin: bottom;
+				/* Origin for the animation */
+			}
+
+			.card.open {
+				transform: scaleY(1);
+				/* Open state */
+			}
+
+			.card > .row {
+				color: white;
+				display: flex;
+				flex-wrap: nowrap;
+			}
+
+			.card > .row > .icon {
+				background: #223;
+				color: white;
+				border-radius: 50%;
+				width: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 15px;
+			}
+
+			.card > .row > .description {
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				overflow: hidden;
+				height: 80px;
+				width: 520px;
+				opacity: 0;
+				transform: translateY(30px);
+				transition-delay: .3s;
+				transition: all .3s ease;
+			}
+
+			.description p {
+				color: yellow;
+				padding-top: 5px;
+			}
+
+			.description h4 {
+				text-transform: uppercase;
+			}
+
+			input {
+				display: none;
+			}
+
+			input:checked + label {
+				width: 600px;
+			}
+
+			input:checked + label .description {
+				opacity: 1 !important;
+				transform: translateY(0) !important;
+			}
+
+			.card[for="c1"] {
+				background-image: url('https://i.postimg.cc/N0jGj9cC/Picsart-24-02-23-01-58-34-471.jpg');
+			}
+
+			.card[for="c2"] {
+				background-image: url('https://i.postimg.cc/7YM6XBQK/Your-Complete-Content-Plan-Part-2-Content-Creation.jpg');
+			}
+
+			.card[for="c3"] {
+				background-image: url('https://i.postimg.cc/d04ptKTR/The-Sketches-Inside-Of-Me-Part-2.jpg');
+			}
+
+			.card[for="c4"] {
+				background-image: url('https://i.postimg.cc/HLpFgLjs/Logo-Design-Services-Design-Your-Own-Logo-Fiverr-Copy.jpg');
+			}
+
+			.hobbies-text {
+				position: absolute;
+				left: 10px;
+				/* Adjusted left margin */
+				top: 65%;
+				transform: translateY(-50%);
+				display: flex;
+				flex-direction: column;
+			}
+
+			.letter {
+				color: red;
+				margin: 5px 0px;
+				/* Adjusted margin */
+				margin-left: 200px;
+				font-size: 35px;
+				/* Adjusted font size */
+				font-family: strain;
+				/* Adjusted font style */
+				font-weight: bold;
+			}
+
+			.letter.white {
+				color: white;
+			}
+
+			/* Add the following CSS code for the cyclone effect */
+			@keyframes cyclone {
+				0% {
+					transform: translateY(0) rotate(0deg);
+				}
+
+				25% {
+					transform: translateY(-10px) rotate(90deg);
+				}
+
+				50% {
+					transform: translateY(0) rotate(180deg);
+				}
+
+				75% {
+					transform: translateY(10px) rotate(270deg);
+				}
+
+				100% {
+					transform: translateY(0) rotate(360deg);
+				}
+			}
+
+			.letter:hover {
+				animation: cyclone 0.5s ease infinite;
+			}
+
+			/* Individual colors for each card's text */
+			.video-editing h4 {
+				color: red;
+				font-family: sterio;
+				font-weight: bold;
+				/* Adjust the color as per your preference */
+			}
+
+			.video-editing p {
+				color: black;
+				font-weight: bold;
+				/* Adjust the color as per your preference */
+			}
+
+			.content-writing h4 {
+				color: black;
+				font-weight: bold;
+				/* Adjust the color as per your preference */
+			}
+
+			.content-writing p {
+				color: red;
+				font-weight: bold;
+				/* Adjust the color as per your preference */
+			}
+
+			.sketching h4 {
+				color: red;
+				font-weight: bold;
+				/* Adjust the color as per your preference */
+			}
+
+			.sketching p {
+				color: black;
+				font-weight: bold;
+				/* Adjust the color as per your preference */
+			}
+
+			.template-designing h4 {
+				color: yellow;
+
+				font-weight: bold;
+				/* Adjust the color as per your preference */
+			}
+
+			.template-designing p {
+				color: white;
+				font-weight: bold;
+				/* Adjust the color as per your preference */
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<div class="name"><span class="red-letter">S</span>atish</div>
+			<nav>
+				<ul>
+					<li><a href="#home-section">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#services">Services</a></li>
+					<!-- Inside the navigation menu -->
+					<li><a href="#interests" id="interests-link">Interests</a></li>
+
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Home Section -->
+		<div id="home-section">
+			<!-- Display message with color filling effect -->
+			<div class="message">
+				<p class="first-message">Hi, I'm Satish Reddy Chandula</p>
+				<p class="second-message tagline">Self-taught programmer</p>
+				<!-- Add the download button -->
+				<button onclick="window.open('https://drive.google.com/file/d/1_1od7fKTXA0__MKpB6rgqVBsFeoIo7p7/view?usp=sharing', '_blank')">Download Resume</button>
+
+			</div>
+
+			<script>
+				// Typing effect for the second message
+				const secondMessage = document.querySelector('.second-message');
+				const text = "Self-taught programmer";
+				let colorIndex = 0;
+				let colors = ["red", "blue", "green", "yellow", "orange"]; // Add more colors as needed
+
+				function type() {
+					let index = 0;
+					secondMessage.innerHTML = ''; // Clear previous content
+					// Recursive function to type the message
+					function typeCharacter() {
+						if (index < text.length) {
+							secondMessage.innerHTML += `<span style="color: ${colors[colorIndex]}">${text.charAt(index)}</span>`;
+							index++;
+							setTimeout(typeCharacter, 100); // Adjust typing speed here (milliseconds)
+						} else {
+							colorIndex = (colorIndex + 1) % colors.length; // Update color index
+							setTimeout(type, 1000); // Wait for 1 second before starting typing again
+						}
+					}
+					typeCharacter(); // Start typing
+				}
+
+				type(); // Start the typing animation
+			</script>
+		</div>
+
+		<!-- About Section -->
+		<div id="about">
+			<div class="container">
+				<div class="about-col-1">
+					<img src="https://i.postimg.cc/59RSxNxc/Picsart-24-02-22-02-25-57-400.jpg" alt="User Image" class="profile-image">
+				</div>
+				<div class="about-col-2">
+					<h1 class="sub-title">About Me</h1>
+					<p class="about-paragraph">
+						Hello, I'm Satish Reddy Chandula, a driven computer science enthusiast from Chennai, Tamil Nadu. With a fervent passion for technology and innovation, I am constantly seeking opportunities to delve into new projects and expand my knowledge base. Through hands-on experiences in internships and training programs, I've explored various facets of software development and machine learning. Beyond coding, I find solace and inspiration in hobbies like template designing, video editing, sketching, and content writing, which allow me to express my creativity and unwind from the world of technology. I'm eager to explore new avenues, collaborate with like-minded individuals, and make meaningful contributions to the ever-evolving tech industry..
+					</p>
+					<div class="tab-titles">
+						<p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+						<p class="tab-links" onclick="opentab('Experience')">Experience</p>
+						<p class="tab-links" onclick="opentab('education')">Education</p>
+					</div>
+
+					<div class="tab-contents active-tab" id="skills">
+						<ul id="skills-list">
+							<li data-details="C++"><span>Programming</span><br>C++</li>
+							<li data-details="HTML, CSS"><span>Web Technologies</span><br>HTML, CSS</li>
+							<li data-details="SQL"><span>DBMS</span><br>SQL</li>
+						</ul>
+					</div>
+
+					<div class="tab-contents" id="Experience">
+						<ul>
+							<li><span>2023</span><br>ML Training From Conginbot</li>
+							<li><span>2022</span><br>CSS Crash Course on Udemy</li>
+							<li><span>2021</span><br>Cpp Training By IIT Bombay</li>
+						</ul>
+					</div>
+
+					<div class="tab-contents" id="education">
+						<ul>
+							<li><span>2024</span><br>B.E from Sathyabama University </li>
+							<li><span>2020</span><br>Intermediate from Sri Chaithanya</li>
+							<li><span>2018</span><br> Schooling from D.A.V High School</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Services Section -->
+		<div id="services">
+			<h2 class="heading"><span>S</span>ervices</h2>
+
+			<div class="wrapper_main">
+				<div class="card_main">
+					<img src="https://i.postimg.cc/t4ppBrBV/Secret-Tips-to-Getting-the-Lowest-Price-on-Airfare.jpg" alt="">
+					<div class="info">
+						<h1>Flight Ticket Price Prediction</h1>
+						<p>This is a web application built with Flask that utilizes a trained machine learning model to predict flight prices based on user input.</p>
+						<a href="https://example.com" class="btn">Read More</a>
+					</div>
+				</div>
+				<div class="card_main">
+					<img src="https://i.postimg.cc/Z5Wt71rn/Clearview-AI-s-false-claims-of-accuracy-increase-the-dangers-of-its-face-recognition-software.jpg" alt="">
+					<div class="info">
+						<h1>Facial Authentication For a web application</h1>
+						<p>This Flask app integrates user registration, login, and face authentication with deep learning models for secure dashboard access.</p>
+						<a href="https://example.com" class="btn">Read More</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!------------------------------------------------------->
+		<div id="interests">
+			<div class="wrapper">
+				<div class="container">
+					<input type="radio" name="slide" id="c1">
+					<label for="c1" class="card">
+						<div class="row">
+							<div class="icon">1</div>
+							<div class="description video-editing">
+								<!-- Add the class "video-editing" here -->
+								<h4>Video Editing</h4>
+								<p>Crafting Stories, Frame by Frame</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" name="slide" id="c2">
+					<label for="c2" class="card">
+						<div class="row">
+							<div class="icon">2</div>
+							<div class="description content-writing">
+								<!-- Add the class "content-writing" here -->
+								<h4>Content Writing</h4>
+								<p>Words that Connect, Ideas that Inspire</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" name="slide" id="c3">
+					<label for="c3" class="card">
+						<div class="row">
+							<div class="icon">3</div>
+							<div class="description sketching">
+								<!-- Add the class "sketching" here -->
+								<h4>Sketching</h4>
+								<p>Sketching Dreams, One Stroke at a Time</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" name="slide" id="c4">
+					<label for="c4" class="card">
+						<div class="row">
+							<div class="icon">4</div>
+							<div class="description template-designing">
+								<!-- Add the class "template-designing" here -->
+								<h4>Template Designing</h4>
+								<p>Designing Tomorrow's Trends, Today</p>
+							</div>
+						</div>
+					</label>
+				</div>
+
+				<div class="hobbies-text">
+					<p class="letter">H</p>
+					<p class="letter white">O</p>
+					<p class="letter">B</p>
+					<p class="letter white">B</p>
+					<p class="letter">I</p>
+					<p class="letter white">E</p>
+					<p class="letter">S</p>
+				</div>
+			</div>
+			<!-- End of Services Section -->
+			<div id="contact">
+				<!-- Add your existing HTML code here -->
+
+				<!-- Contact Page -->
+				<!DOCTYPE html>
+				<html lang="en">
+
+					<head>
+						<meta charset="UTF-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						<title>Contact Page</title>
+						<!-- Include Font Awesome CSS -->
+						<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+						<style>
+							/* Add your CSS styles here */
+							/* Contact Section Styles */
+							.contact-section {
+								background-color: black;
+								color: white;
+								padding: 50px 20px;
+								text-align: center;
+								margin-top: 150px;
+							}
+
+							.contact-section h2 {
+								margin-bottom: 30px;
+								font-size: 36px;
+							}
+
+							.contact-form {
+								max-width: 500px;
+								margin: 0 auto;
+							}
+
+							/* Social Icons Styles */
+							.social-icons {
+								margin-bottom: 20px;
+							}
+
+							.social-icons a {
+								color: white;
+								font-size: 24px;
+								margin-right: 10px;
+								text-decoration: none;
+								transition: transform 0.3s ease;
+								/* Add transition effect */
+							}
+
+							.social-icons a:hover {
+								color: red;
+								transform: scale(1.2);
+								/* Add scale effect on hover */
+							}
+
+							/* Form Input Styles */
+
+							form {
+								max-width: 400px;
+								margin: 0 auto;
+								padding: 20px;
+								border: 0.5px solid red;
+								border-radius: 8px;
+								background-color: black;
+							}
+
+							label {
+								display: block;
+								margin-bottom: 10px;
+								color: #ddd;
+							}
+
+							textarea {
+								width: 100%;
+								padding: 8px;
+								border: 1px solid #555;
+								border-radius: 4px;
+								resize: vertical;
+								background-color: #444;
+								color: #ddd;
+								font-family: serif;
+							}
+
+							textarea[name="message"] {
+								height: 150px;
+							}
+
+							input[type="submit"] {
+								background-color: #4caf50;
+								color: white;
+								padding: 10px 20px;
+								border: none;
+								border-radius: 4px;
+								cursor: pointer;
+							}
+
+							input[type="submit"]:hover {
+								background-color: #45a049;
+							}
+
+							.form-input,
+							.form-textarea {
+								width: 100%;
+								padding: 10px;
+								margin-bottom: 20px;
+								background-color: #262626;
+								border: none;
+								border-radius: 5px;
+								color: white;
+							}
+
+							.form-input::placeholder,
+							.form-textarea::placeholder {
+								color: rgba(255, 255, 255, 0.7);
+							}
+
+							/* Form Submit Button Styles */
+							.form-submit {
+								background-color: red;
+								color: white;
+								border: none;
+								border-radius: 5px;
+								padding: 10px 20px;
+								cursor: pointer;
+								transition: background-color 0.3s;
+							}
+
+							.form-submit:hover {
+								background-color: darkred;
+							}
+						</style>
+					</head>
+
+					<body>
+						<section id="contact-section" class="contact-section">
+							<h2>Contact Me</h2>
+							<div class="contact-form">
+								<!-- Social media icons -->
+								<div class="social-icons">
+									<!-- Instagram -->
+									<a href="https://www.instagram.com/satish_reddy_chandula?igsh=YXl4Z3dhaThjNXB6" class="social-icon" id="instagram"><i class="fab fa-instagram"></i></a>
+									<!-- LinkedIn -->
+									<a href="https://www.linkedin.com/in/satish-reddy-chandula" class="social-icon" id="linkedin"><i class="fab fa-linkedin"></i></a>
+									<!-- GitHub -->
+									<a href="https://github.com/SatishReddyChandula" class="social-icon" id="github"><i class="fab fa-github"></i></a>
+									<!-- Mail -->
+									<a href="mailto:reddysatish2001@gmail.com" class="social-icon" id="mail"><i class="fas fa-envelope"></i></a>
+
+								</div>
+
+								<!-- Contact form -->
+								<form action="https://formspree.io/f/xwkgbrby" method="POST">
+									<label>
+										your name
+										<textarea name="name"></textarea>
+										<label>
+											<label>
+												Your email:
+												<textarea name="email"></textarea>
+											</label>
+											<label>
+												Your message:
+												<textarea name="message"></textarea>
+											</label>
+											<!-- your other form fields go here -->
+											<button type="submit">Send</button>
+								</form>
+
+							</div>
+						</section>
+						<script>
+							// Add click event listeners to social icons
+							const socialIcons = document.querySelectorAll('.social-icon');
+							socialIcons.forEach(icon => {
+								icon.addEventListener('click', () => {
+									icon.classList.toggle('open');
+								});
+							});
+						</script>
+					</body>
+
+				</html>
+	</body>
+
+</html>
+
+
+<!-- Add your existing HTML code after the Services Section -->
+<script>
+	// Define variables for tab links and tab contents
+	let tablinks = document.getElementsByClassName("tab-links");
+	let tabcontents = document.getElementsByClassName("tab-contents");
+
+	// Define the function to open a specific tab
+	function opentab(tabname) {
+		// Remove the 'active-link' class from all tab links
+		for (let tablink of tablinks) {
+			tablink.classList.remove("active-link");
+		}
+
+		// Remove the 'active-tab' class from all tab contents
+		for (let tabcontent of tabcontents) {
+			tabcontent.classList.remove("active-tab");
+		}
+
+		// Add the 'active-link' class to the clicked tab link
+		event.currentTarget.classList.add("active-link");
+
+		// Add the 'active-tab' class to the corresponding tab content
+		document.getElementById(tabname).classList.add("active-tab");
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		// Function to open the cards like rods forming one by one
+		function openCards() {
+			const cards = document.querySelectorAll('.card');
+			cards.forEach((card, index) => {
+				setTimeout(() => {
+					card.classList.add('open');
+				}, index * 250); // Adjust the delay between each card
+			});
+		}
+		// Trigger the openCards function after the page has loaded
+		openCards();
+
+		// Add a click event listener to the "Interests" link in the navigation menu
+		const interestsLink = document.querySelector('a[href="#interests"]');
+		if (interestsLink) {
+			interestsLink.addEventListener('click', function(event) {
+				event.preventDefault(); // Prevent the default link behavior
+
+				// Scroll to the Interests section
+				const interestsSection = document.getElementById('interests');
+				interestsSection.scrollIntoView({
+					behavior: 'smooth'
+				});
+
+				// Trigger the openCards function after scrolling
+				openCards();
+			});
+		}
+	});
+</script>
+
+</body>
+
+</html>
